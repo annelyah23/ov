@@ -178,83 +178,6 @@ cp keys/dh2048.pem /etc/openvpn
 cp keys/client.key /etc/openvpn
 cp keys/client.crt /etc/openvpn
 
-# Buat config server UDP 1194
-cd /etc/openvpn
-
-cat > /etc/openvpn/server-udp-25000.conf <<-END
-port 25000
-proto udp
-dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
-client-cert-not-required
-username-as-common-name
-server 10.5.0.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
-keepalive 5 30
-comp-lzo
-persist-key
-persist-tun
-status server-udp-1194.log
-verb 3
-END
-
-# Buat config server TCP 1194
-cat > /etc/openvpn/server-tcp-1194.conf <<-END
-port 1194
-proto tcp
-dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
-client-cert-not-required
-username-as-common-name
-server 10.6.0.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
-keepalive 5 30
-comp-lzo
-persist-key
-persist-tun
-status server-tcp-1194.log
-verb 3
-END
-
-# Buat config server TCP 2200
-cat > /etc/openvpn/server-tcp-2200.conf <<-END
-port 2200
-proto tcp
-dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
-client-cert-not-required
-username-as-common-name
-server 10.7.0.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
-keepalive 5 30
-comp-lzo
-persist-key
-persist-tun
-status server-tcp-2200.log
-verb 3
-END
-
 cd
 
 # nano /etc/default/openvpn
@@ -267,7 +190,7 @@ sed -i 's/AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn
 
 # aktifkan ip4 forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+sed -i 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 # edit file sysctl.conf
 # nano /etc/sysctl.conf
 # Uncomment hilangkan tanda pagar pada #net.ipv4.ip_forward=1
@@ -429,7 +352,7 @@ fi
 source /etc/os-release
 if [[ $VERSION_ID == "10" ]]; then
 echo 1 > /proc/sys/net/ipv4/ip_forward
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+sed -i 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 sysctl -p
 # folder iptables
 mkdir -p /etc/iptables
