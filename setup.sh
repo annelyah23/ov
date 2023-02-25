@@ -3,20 +3,15 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- icanhazip.com);
-echo "Checking VPS"
-IZIN=$( curl https://raw.githubusercontent.com/annelyah23/ssh/main/ipvps | grep $MYIP )
-if [ $MYIP = $IZIN ]; then
-echo -e "${green}Permission Accepted...${NC}"
-else
-echo -e "${green}Permission Accepted...${NC}"
-fi
+
 mkdir /var/lib/premium-script;
 echo "Enter the VPS Subdomain Hostname, if not available, please click Enter"
 read -p "Hostname / Domain: " host
 echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
-wget https://raw.githubusercontent.com/annelyah23/ssh/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
-rm -f /root/ssh-vpn.sh
-rm -f /root/sstp.sh
+wget https://raw.githubusercontent.com/annelyah23/ov/main/host.sh && chmod +x host.sh && screen -S host ./host.sh
+wget https://raw.githubusercontent.com/annelyah23/ov/main/scriptabdur.sh && chmod +x scriptabdur.sh && screen -S scriptabdur ./scriptabdur.sh
+rm -f /root/scriptabdur.sh 
+rm -f /root/host.sh
 
 history -c
 echo "1.1" > /home/ver
