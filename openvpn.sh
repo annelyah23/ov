@@ -215,7 +215,7 @@ cp /etc/openvpn/easy-rsa/keys/{white-vps.crt,white-vps.key,ca.crt,ta.key} /etc/o
 ls /etc/openvpn
 
 # nano /etc/default/openvpn
-sed -i 's/#AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn
+sed -i 's/AUTOSTART="all"/TART="all"/g' /etc/default/openvpn
 # Cari pada baris #AUTOSTART=”all” hilangkan tanda pagar # didepannya sehingga menjadi AUTOSTART=”all”. Save dan keluar dari editor
 
 # restart openvpn dan cek status openvpn

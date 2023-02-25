@@ -21,7 +21,7 @@ commonname=www.rumahconfig.com
 email=admin@rumahconfig.com
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/benkemad/scriptabdur/master/common-password-deb9"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/annelyah23/ov/main/common-password-deb9"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -112,20 +112,20 @@ apt-get -y update
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/benkemad/scriptabdur/master/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/annelyah23/ov/main/nginx.conf"
 mkdir -p /home/vps/public_html
 echo "<pre>Setup by Kemaddd</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/benkemad/scriptabdur/master/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/annelyah23/ov/main/vps.conf"
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/benkemad/scriptabdur/master/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/annelyah23/ov/main/badvpn-udpgw64"
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10 
 
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/benkemad/scriptabdur/master/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/annelyah23/ov/main/badvpn-udpgw64"
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 
@@ -145,7 +145,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 # install squid
 cd
 apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/benkemad/scriptabdur/master/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/annelyah23/ov/main/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 source /etc/os-release
@@ -258,7 +258,7 @@ END
 cd
 
 # nano /etc/default/openvpn
-sed -i 's/#AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn
+sed -i 's/AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn
 # Cari pada baris #AUTOSTART=”all” hilangkan tanda pagar # didepannya sehingga menjadi AUTOSTART=”all”. Save dan keluar dari editor
 
 # restart openvpn dan cek status openvpn
@@ -806,28 +806,28 @@ cd
 apt-get install -y libxml-parser-perl
 
 # banner /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/benkemad/scriptabdur/master/issue.net"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/annelyah23/ov/main/issue.net"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 # download script
 cd /usr/bin
-wget -O perpanjang "https://raw.githubusercontent.com/benkemad/scriptabdur/master/perpanjang.sh"
-wget -O menu "https://raw.githubusercontent.com/benkemad/scriptabdur/master/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/benkemad/scriptabdur/master/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/benkemad/scriptabdur/master/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/benkemad/scriptabdur/master/hapus.sh"
-wget -O member "https://raw.githubusercontent.com/benkemad/scriptabdur/master/member.sh"
-wget -O delete "https://raw.githubusercontent.com/benkemad/scriptabdur/master/delete.sh"
-wget -O cek "https://raw.githubusercontent.com/benkemad/scriptabdur/master/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/benkemad/scriptabdur/master/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/benkemad/scriptabdur/master/speedtest_cli.py"
-wget -O limit "https://raw.githubusercontent.com/benkemad/scriptabdur/master/limit.sh"
-wget -O userlimit "https://raw.githubusercontent.com/benkemad/scriptabdur/master/userlimit.sh"
-wget -O portstat "https://raw.githubusercontent.com/benkemad/scriptabdur/master/portstat.sh"
-wget -O info "https://raw.githubusercontent.com/benkemad/scriptabdur/master/info.sh"
-wget -O contact "https://raw.githubusercontent.com/benkemad/scriptabdur/master/contact.sh"
-wget -O about "https://raw.githubusercontent.com/benkemad/scriptabdur/master/about.sh"
+wget -O perpanjang "https://raw.githubusercontent.com/annelyah23/ov/main/perpanjang.sh"
+wget -O menu "https://raw.githubusercontent.com/annelyah23/ov/main/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/annelyah23/ov/main/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/annelyah23/ov/main/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/annelyah23/ov/main/hapus.sh"
+wget -O member "https://raw.githubusercontent.com/annelyah23/ov/main/member.sh"
+wget -O delete "https://raw.githubusercontent.com/annelyah23/ov/main/delete.sh"
+wget -O cek "https://raw.githubusercontent.com/annelyah23/ov/main/cek.sh"
+wget -O restart "https://raw.githubusercontent.com/annelyah23/ov/main/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/annelyah23/ov/main/speedtest_cli.py"
+wget -O limit "https://raw.githubusercontent.com/annelyah23/ov/main/limit.sh"
+wget -O userlimit "https://raw.githubusercontent.com/annelyah23/ov/main/userlimit.sh"
+wget -O portstat "https://raw.githubusercontent.com/annelyah23/ov/main/portstat.sh"
+wget -O info "https://raw.githubusercontent.com/annelyah23/ov/main/info.sh"
+wget -O contact "https://raw.githubusercontent.com/annelyah23/ov/main/contact.sh"
+wget -O about "https://raw.githubusercontent.com/annelyah23/ov/main/about.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
